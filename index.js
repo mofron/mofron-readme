@@ -135,7 +135,7 @@ fs.readFile(
                         
                         ret_text += gen.parameter(comment);
                         write(ret_text);
-                        console.log(ret_text);
+                        //console.log(ret_text);
                         
                     } catch (e) {
                         console.error(e.stack);
