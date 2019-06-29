@@ -29,7 +29,7 @@ thisobj = {
             }
             /* attention */
             for (let aidx in finf.attention) {
-                ret += (0 == fidx) ? "## Attention\n" : "";
+                ret += (0 == aidx) ? "## Attention\n" : "";
                 ret += " - " + finf.attention[aidx] + '\n';
             }
             
