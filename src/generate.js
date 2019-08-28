@@ -78,7 +78,6 @@ thisobj = {
             let simple = [];
             let flst = cmt.funcList();
             for (let fidx in flst) {
-                
                 if (-1 === flst[fidx].type.indexOf("parameter")) {
                     if (undefined !== flst[fidx].pmap) {
                         simple = flst[fidx].pmap;

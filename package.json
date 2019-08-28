@@ -1,6 +1,6 @@
 {
   "name": "mofron-readme",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "mofron readme generator",
   "preferGlobal" : true,
   "bin" : {

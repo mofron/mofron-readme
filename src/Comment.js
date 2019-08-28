@@ -85,12 +85,19 @@ module.exports = class {
         try {
             let ret = {};
             let mch = prm.match(/[(].+[)]/);
-            if (null !== mch) {
-                ret.type = mch[0].substring(1, mch[0].length-1);
-                ret.desc = prm.split(mch[0] + ' ')[1];
+            if ( (null !== mch) && (0 === mch.index) ) {
+	        if (')' === prm[prm.indexOf(')')+1]) {
+                    /* data type is () in the () */
+		    ret.type = mch[0].substring(1, prm.indexOf(')')+1);
+                    ret.desc = prm.split(mch[0].substring(0, prm.indexOf(')')+2) + ' ')[1];
+		} else {
+                    ret.type = mch[0].substring(1, prm.indexOf(')'));
+		    ret.desc = prm.split(prm.substring(0, prm.indexOf(')')+1) + ' ')[1];
+		}
             } else {
                 ret.desc = prm;
             }
+	    //console.log(ret);
             return ret;
         } catch (e) {
             console.error(e.stack);
