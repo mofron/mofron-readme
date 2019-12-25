@@ -70,6 +70,8 @@ module.exports = class {
                     add_func[pidx] = dat;
                 } else if ("type" === pidx) {
                     add_func[pidx] = prm[pidx][0];
+		} else if ("short" === pidx) {
+		    add_func[pidx] = prm[pidx][0].split(",");
                 } else {
                     add_func[pidx] = prm[pidx];
                 }

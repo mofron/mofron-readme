@@ -57,6 +57,9 @@ thisobj = {
     
     sample : (prm) => {
         try {
+	    if (undefined === prm) {
+                return "";
+	    }
             let ret = "# Sample" + '\n';
             ret += "```html" + '\n';
             ret += prm;
@@ -72,28 +75,25 @@ thisobj = {
     parameter : (cmt) => {
         try {
             let ret = "# Parameter" + "\n\n";
-            ret += "|Simple<br>Param | Parameter Name | Type | Description |" + '\n';
-            ret += "|:--------------:|:---------------|:-----|:------------|" + '\n';
+            ret += "| Short<br>Form | Parameter Name | Type | Description |" + '\n';
+            ret += "|:-------------:|:---------------|:-----|:------------|" + '\n';
             
-            let simple = [];
+            let sht_fm = [];
             let flst = cmt.funcList();
             for (let fidx in flst) {
-                if (-1 === flst[fidx].type.indexOf("parameter")) {
-                    if (undefined !== flst[fidx].pmap) {
-                        simple = flst[fidx].pmap;
-                    }
+	        if ((0 == fidx) && ("private" === flst[fidx].type)) {
+		    sht_fm = flst[fidx].short;
                     continue;
-                }
-                /* simple param */
-                let smp_flg = false;
-                for (let smp_idx in simple) {
-                    if (flst[fidx].name === simple[smp_idx]) {
-                        smp_flg = true;
+		}
+                /* check short form */
+                let sht_flg = false;
+                for (let sidx in sht_fm) {
+                    if (flst[fidx].name === sht_fm[sidx]) {
+                        sht_flg = true;
                         break;
-                        //ret += "| ◯  | ";
                     }
                 }
-                ret += (true === smp_flg) ? "| ◯  | " : "| | ";
+                ret += (true === sht_flg) ? "| ◯  | " : "| | ";
                 
                 /* name */
                 ret += flst[fidx].name + " | ";
