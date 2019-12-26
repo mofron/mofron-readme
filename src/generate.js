@@ -63,7 +63,7 @@ thisobj = {
             let ret = "# Sample" + '\n';
             ret += "```html" + '\n';
             ret += prm;
-            ret += "```" + '\n'
+            ret += "```" + '\n\n';
             
             return ret;
         } catch (e) {
@@ -81,8 +81,10 @@ thisobj = {
             let sht_fm = [];
             let flst = cmt.funcList();
             for (let fidx in flst) {
-	        if ((0 == fidx) && ("private" === flst[fidx].type)) {
-		    sht_fm = flst[fidx].short;
+	        if ("private" === flst[fidx].type) {
+		    if (0 == fidx) {
+		        sht_fm = flst[fidx].short;
+                    }
                     continue;
 		}
                 /* check short form */
