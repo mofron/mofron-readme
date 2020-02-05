@@ -79,7 +79,7 @@ thisobj = {
             ret += "|:-------------:|:---------------|:-----|:------------|" + '\n';
             
             let sht_fm = [];
-            let flst = cmt.funcList();
+            let flst   = cmt.funcList();
             for (let fidx in flst) {
 	        if ("private" === flst[fidx].type) {
 		    if (0 == fidx) {
@@ -113,6 +113,9 @@ thisobj = {
                         ret += "| | | | " + flst[fidx].param[pidx].desc[dsc_idx] + " |" + '\n';
                     }
                 }
+		if (undefined === flst[fidx].param) {
+		    ret += "||";
+		}
                 
             }
             return ret + '\n';

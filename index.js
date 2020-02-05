@@ -30,19 +30,23 @@ let getComment = (code) => {
         let bgn  = true;
         let elem = null;
         for (let cidx in code) {
-            
+
             if (true === bgn) {
-                if ( (-1 !== code[cidx].indexOf("/**")) && (-1 === code[cidx].indexOf("*/"))) {
+	        /* find comment */
+		if (-1 !== code[cidx].indexOf("/**")) {
+                //if ( (-1 !== code[cidx].indexOf("/**")) && (-1 === code[cidx].indexOf("*/"))) {
                     bgn = false;
                     elem = { desc: code[parseInt(cidx)+1], conts: [], note: null };
                 }
             } else {
+	        /* in comment, get contents */
                 if (-1 === code[cidx].indexOf("*/")) {
-                    if (-1 !== code[cidx].indexOf("//")) {
-                        code[cidx] = code[cidx].substring(0, code[cidx].indexOf("//"));
-                    }
+                    //if (-1 !== code[cidx].indexOf("//")) {
+                    //    code[cidx] = code[cidx].substring(0, code[cidx].indexOf("//"));
+                    //}
                     elem.conts.push(code[cidx]);
                 } else {
+		    /* end comment */
                     bgn = true;
                     elem.note = code[parseInt(cidx)+1];
                     ret.push(elem);
