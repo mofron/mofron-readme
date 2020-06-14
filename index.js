@@ -132,7 +132,7 @@ fs.readFile(
 
             /* load sample */
             fs.readFile(
-                (3 > process.argv.length) ?  './sample/index.mof' : process.argv[3], "utf8",
+                (3 > process.argv.length) ?  './sample/index.mf' : process.argv[3], "utf8",
                 (er, stxt) => {
                     try {
                         ret_text += gen.sample(stxt);
